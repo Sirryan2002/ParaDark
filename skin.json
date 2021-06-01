@@ -23,26 +23,13 @@
 		"SkinParaDark": "ParaDarkSkin.php",
 		"ParaDarkTemplate": "ParaDarkTemplate.php"
 	},
-	"ConfigRegistry": {
-		"vector": "GlobalVarConfig::newInstance"
-	},
 	"ResourceModules": {
-		"skins.vector.styles": {
-			"class": "ResourceLoaderSkinModule",
-			"features": [ "normalize", "elements", "content", "interface", "legacy" ],
-			"targets": [
-				"desktop",
-				"mobile"
-			],
-			"styles": [ "resources/skins.vector.styles/skin.less" ]
+		"skins.paradark.styles": {
+			"styles": [ "skins.paradark.styles/skin.less" ]
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteSkinPath": "ParaDark"
-	},
-	"ResourceModuleSkinStyles": {
-
-	},
-	"skin_version": 1.0
+	}
 }
