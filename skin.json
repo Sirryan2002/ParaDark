@@ -28,6 +28,12 @@
 			"styles": [ "includes/skins.paradark.styles/skin.less" ]
 		}
 	},
+	"config": {
+		"ParaDarkShowSkinPreferences": {
+			"value": true,
+			"description": "@var boolean Show skin-specific user preferences on the Special:Preferences appearance tab when true and hide them otherwise."
+		}
+	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteSkinPath": "ParaDark"

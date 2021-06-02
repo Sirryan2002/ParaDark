@@ -21,13 +21,15 @@ class ParaDarkTemplate extends BaseTemplate {
 	 * Outputs the entire contents of the page
      * also if you're reading this.... fuck you!
 	 */
-	public function __construct(
-		TemplateParser $templateParser,
-	) {
+	public function __construct(Config $config, TemplateParser $templateParser) {
+		parent::__construct( $config );
 		$this->templateParser = $templateParser;
 		$this->templateRoot = 'skin';
 	}
 
+	private function getConfig() {
+		return $this->config;
+	}
 
 
     protected function getTemplateParser() { //grab that fucking template parser
@@ -58,8 +60,6 @@ class ParaDarkTemplate extends BaseTemplate {
 			'html-title' => $out->getPageTitle(),
 			'msg-tagline' => $skin->msg( 'tagline' )->text(),
 
-			'html-newtalk' => $newTalksHtml ? '<div class="usermessage">' . $newTalksHtml . '</div>' : '',
-
 			'msg-paradark-jumptonavigation' => $skin->msg( 'paradark-jumptonavigation' )->text(),
 			'msg-paradark-jumptosearch' => $skin->msg( 'paradark-jumptosearch' )->text(),
 
@@ -84,9 +84,8 @@ class ParaDarkTemplate extends BaseTemplate {
     }
 
 	public function execute() {
-		$this->html( 'headelement' ); 
-        $this->text( 'sitename' );
         $tp = $this->getTemplateParser(); //grabbing our template parser
+		echo $tp->processTemplate( $this->templateRoot, $this->getSkinData() );
 	}
 
     private function getFooterData() : array {
@@ -167,7 +166,7 @@ class ParaDarkTemplate extends BaseTemplate {
 					break;
 				case 'TOOLBOX':
 					$portal = $this->getMenuData(
-						'tb', $content, self::MENU_TYPE_PORTAL
+						'tb', $content
 					);
 
 					$props[] = $portal;
@@ -176,47 +175,22 @@ class ParaDarkTemplate extends BaseTemplate {
 					$portal = $this->getMenuData(
 						'lang',
 						$content,
-						self::MENU_TYPE_PORTAL
 					);
 					// The language portal will be added provided either
 					// languages exist or there is a value in html-after-portal
 					// for example to show the add language wikidata link (T252800)
-					if ( count( $content ) || $portal['html-after-portal'] ) {
+					if ( count( $content )) {
 						$languages = $portal;
 					}
 					break;
 				default:
-					// Historically some portals have been defined using HTML rather than arrays.
-					// Let's move away from that to a uniform definition.
-					if ( !is_array( $content ) ) {
-						$html = $content;
-						$content = [];
-						wfDeprecated(
-							"`content` field in portal $name must be array."
-								. "Previously it could be a string but this is no longer supported.",
-							'1.35.0'
-						);
-					} else {
-						$html = false;
-					}
-					$portal = $this->getMenuData(
-						$name, $content, self::MENU_TYPE_PORTAL
-					);
-					if ( $html ) {
-						$portal['html-items'] .= $html;
-					}
-					$props[] = $portal;
 					break;
 			}
 		}
 
 		$firstPortal = $props[0] ?? null;
-		if ( $firstPortal ) {
-			$firstPortal[ 'class' ] .= ' portal-first';
-		}
 
 		return [
-			'has-logo' => $this->isLegacy,
 			'html-logo-attributes' => Xml::expandAttributes(
 				Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) + [
 					'class' => 'mw-wiki-logo',
@@ -234,8 +208,6 @@ class ParaDarkTemplate extends BaseTemplate {
 	 *  If the key has an entry in the constant MENU_LABEL_KEYS then that message will be used for the
 	 *  human readable text instead.
 	 * @param array $urls to convert to list items stored as string in html-items key
-	 * @param int $type of menu (optional) - a plain list (MENU_TYPE_DEFAULT),
-	 *   a tab (MENU_TYPE_TABS) or a dropdown (MENU_TYPE_DROPDOWN)
 	 * @param array $options (optional) to be passed to makeListItem
 	 * @param bool $setLabelToSelected (optional) the menu label will take the value of the
 	 *  selected item if found.
@@ -244,7 +216,6 @@ class ParaDarkTemplate extends BaseTemplate {
 	private function getMenuData(
 		string $label,
 		array $urls = [],
-		int $type = self::MENU_TYPE_DEFAULT,
 		array $options = [],
 		bool $setLabelToSelected = false
 	) : array {
@@ -253,7 +224,7 @@ class ParaDarkTemplate extends BaseTemplate {
 
 		// For some menu items, there is no language key corresponding with its menu key.
 		// These inconsitencies are captured in MENU_LABEL_KEYS
-		$msgObj = $skin->msg( self::MENU_LABEL_KEYS[ $label ] ?? $label );
+		$msgObj = $skin->msg($label);
 		$props = [
 			'id' => "p-$label",
 			'label-id' => "p-{$label}-label",
@@ -306,26 +277,19 @@ class ParaDarkTemplate extends BaseTemplate {
 			'data-personal-menu' => $ptools,
 			'data-namespace-tabs' => $this->getMenuData(
 				'namespaces',
-				$contentNavigation[ 'namespaces' ] ?? [],
-				self::MENU_TYPE_TABS
+				$contentNavigation[ 'namespaces' ] ?? []
 			),
 			'data-variants' => $this->getMenuData(
 				'variants',
-				$contentNavigation[ 'variants' ] ?? [],
-				self::MENU_TYPE_DROPDOWN,
-				[], true
+				$contentNavigation[ 'variants' ] ?? []
 			),
 			'data-page-actions' => $this->getMenuData(
 				'views',
-				$contentNavigation[ 'views' ] ?? [],
-				self::MENU_TYPE_TABS, [
-					'vector-collapsible' => true,
-				]
+				$contentNavigation[ 'views' ] ?? []
 			),
 			'data-page-actions-more' => $this->getMenuData(
 				'cactions',
-				$contentNavigation[ 'actions' ] ?? [],
-				self::MENU_TYPE_DROPDOWN
+				$contentNavigation[ 'actions' ] ?? []
 			),
 		];
 	}

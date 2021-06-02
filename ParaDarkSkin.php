@@ -9,8 +9,12 @@
  * also if I wanted to add references to JS scripts in this skin I could do that here
  */
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\WrappedString;
+
  class SkinParaDark extends SkinTemplate { //We're extending the base MW skintemplate
-    var $skinname = 'paradark', $stylename = 'ParaDark',
+    var $skinname = 'paradark', 
+    $stylename = 'ParaDark',
     $template = 'ParaDarkTemplate';
     /**
      * I'm about a week into trying to develop this fucking custom skin for ParadiseStation and 
@@ -27,29 +31,17 @@
       return $modules;
     }
     /**
-     * so this protected function SetupTemplates() took me a moment to understand (see:https://www.mediawiki.org/wiki/Manual:HTML_templates)
+     * so this protected function setupTemplate() took me a moment to understand (see:https://www.mediawiki.org/wiki/Manual:HTML_templates)
      * what we're doing is using a constructor to build a template parser object, essentially what this does is
      * allow us to get ready to read .mustache templates and implement them. a.k.a convert them into HTML for us
      * this is the extent we work with this mustache templates on this php file though, the rest is handled in
      * the template php
      */
  
-    protected function SetupTemplates() {
-      $tp = new TemplateParser( __DIR__ . 'includes/templates');
-      return new ParaDarkTemplate($tp);
+    protected function setupTemplate($classname) {
+      $tp = new TemplateParser( __DIR__ . '/includes/templates');
+      return new ParaDarkTemplate( $this->getConfig(), $tp );
     }
-
-   /**
-     * We're adding all of our CSS skins that we want applied via the resource loader
-     * we don't need to specify all of them here b/c we've already done that in our skin.json file
-      */
-    function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
-		$out->addModuleStyles( array(
-			'mediawiki.skinning.interface', 'skins.paradark' 
-			/* 'skins.paradark' is the name we used in our skin.json file */
-		) );
-	}
 
   public function getTemplateData() {
 		$out = $this->getOutput();
