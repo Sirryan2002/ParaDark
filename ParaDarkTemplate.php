@@ -13,10 +13,23 @@
  */
 
 class ParaDarkTemplate extends BaseTemplate {
+
+
+	private $templateParser;
+	private $templateRoot;
 	/**
 	 * Outputs the entire contents of the page
      * also if you're reading this.... fuck you!
 	 */
+	public function __construct(
+		TemplateParser $templateParser,
+	) {
+		$this->templateParser = $templateParser;
+		$this->templateRoot = 'skin';
+	}
+
+
+
     protected function getTemplateParser() { //grab that fucking template parser
 		if ( $this->templateParser === null ) {
 			throw new \LogicException(
@@ -74,66 +87,62 @@ class ParaDarkTemplate extends BaseTemplate {
 		$this->html( 'headelement' ); 
         $this->text( 'sitename' );
         $tp = $this->getTemplateParser(); //grabbing our template parser
+	}
 
-        //8888888888888888888888888888888888888888
-        //8888888888888888888888888888888888888888
-        //8888888888888888888888888888888888888888
+    private function getFooterData() : array {
+        $skin = $this->getSkin();
+        $footerRows = [];
+         foreach ( $this->getFooterLinks() as $category => $links ) {
+              $items = [];
+              $rowId = "footer-$category";
+    
+              foreach ( $links as $link ) {
+                   $items[] = [
+                    'id' => "$rowId-$link",
+                    'html' => $this->get( $link, '' ),
+                 ];
+             }
 
-        private function getFooterData() : array {
-            $skin = $this->getSkin();
-            $footerRows = [];
-            foreach ( $this->getFooterLinks() as $category => $links ) {
-                $items = [];
-                $rowId = "footer-$category";
-    
-                foreach ( $links as $link ) {
-                    $items[] = [
-                        'id' => "$rowId-$link",
-                        'html' => $this->get( $link, '' ),
-                    ];
-                }
-    
-                $footerRows[] = [
-                    'id' => $rowId,
-                    'className' => null,
-                    'array-items' => $items
-                ];
-            }
-    
-            // If footer icons are enabled append to the end of the rows
-            $footerIcons = $this->getFooterIcons( 'icononly' );
-            if ( count( $footerIcons ) > 0 ) {
-                $items = [];
-                foreach ( $footerIcons as $blockName => $blockIcons ) {
-                    $html = '';
-                    foreach ( $blockIcons as $icon ) {
-                        $html .= $skin->makeFooterIcon( $icon );
-                    }
-                    $items[] = [
-                        'id' => 'footer-' . htmlspecialchars( $blockName ) . 'ico',
-                        'html' => $html,
-                    ];
-                }
-    
-                $footerRows[] = [
-                    'id' => 'footer-icons',
-                    'className' => 'noprint',
-                    'array-items' => $items,
-                ];
-            }
-    
-            $data = [
-                'array-footer-rows' => $footerRows,
-            ];
-    
-            return $data;
+              $footerRows[] = [
+                  'id' => $rowId,
+                  'className' => null,
+                 'array-items' => $items
+             ];
         }
+    
+         // If footer icons are enabled append to the end of the rows
+        $footerIcons = $this->getFooterIcons( 'icononly' );
+         if ( count( $footerIcons ) > 0 ) {
+              $items = [];
+               foreach ( $footerIcons as $blockName => $blockIcons ) {
+                $html = '';
+                  foreach ( $blockIcons as $icon ) {
+                       $html .= $skin->makeFooterIcon( $icon );
+                   }
+                  $items[] = [
+                      'id' => 'footer-' . htmlspecialchars( $blockName ) . 'ico',
+                     'html' => $html,
+                ];
+            }
+    
+            $footerRows[] = [
+                'id' => 'footer-icons',
+                'className' => 'noprint',
+                'array-items' => $items,
+            ];
+        }
+    
+        $data = [
+            'array-footer-rows' => $footerRows,
+        ];
+
+        return $data;
     }
 
 	private function isSidebarVisible() {
 		$skin = $this->getSkin();
 		if ( $skin->getUser()->isLoggedIn() ) {
-			return true //is user logged in? 
+			return true; //is user logged in? 
 		}
 		return false; //don't show sidebar when not logged in :)
 	}
@@ -161,7 +170,7 @@ class ParaDarkTemplate extends BaseTemplate {
 						'tb', $content, self::MENU_TYPE_PORTAL
 					);
 
-					$props[] = $portal
+					$props[] = $portal;
 					break;
 				case 'LANGUAGES':
 					$portal = $this->getMenuData(
@@ -240,19 +249,7 @@ class ParaDarkTemplate extends BaseTemplate {
 		bool $setLabelToSelected = false
 	) : array {
 		$skin = $this->getSkin();
-		$extraClasses = [
-			self::MENU_TYPE_DROPDOWN => 'vector-menu vector-menu-dropdown vectorMenu',
-			self::MENU_TYPE_TABS => 'vector-menu vector-menu-tabs vectorTabs',
-			self::MENU_TYPE_PORTAL => 'vector-menu vector-menu-portal portal',
-			self::MENU_TYPE_DEFAULT => 'vector-menu',
-		];
-		// A list of classes to apply the list element and override the default behavior.
-		$listClasses = [
-			// `.menu` is on the portal for historic reasons.
-			// It should not be applied elsewhere per T253329.
-			self::MENU_TYPE_DROPDOWN => 'menu vector-menu-content-list',
-		];
-		$isPortal = self::MENU_TYPE_PORTAL === $type;
+
 
 		// For some menu items, there is no language key corresponding with its menu key.
 		// These inconsitencies are captured in MENU_LABEL_KEYS
@@ -262,39 +259,9 @@ class ParaDarkTemplate extends BaseTemplate {
 			'label-id' => "p-{$label}-label",
 			// If no message exists fallback to plain text (T252727)
 			'label' => $msgObj->exists() ? $msgObj->text() : $label,
-			'list-classes' => $listClasses[$type] ?? 'vector-menu-content-list',
 			'html-items' => '',
-			'is-dropdown' => self::MENU_TYPE_DROPDOWN === $type,
 			'html-tooltip' => Linker::tooltip( 'p-' . $label ),
 		];
-
-		foreach ( $urls as $key => $item ) {
-			// Add CSS class 'collapsible' to all links EXCEPT watchstar.
-			if (
-				$key !== 'watch' && $key !== 'unwatch' &&
-				isset( $options['vector-collapsible'] ) && $options['vector-collapsible'] ) {
-				if ( !isset( $item['class'] ) ) {
-					$item['class'] = '';
-				}
-				$item['class'] = rtrim( 'collapsible ' . $item['class'], ' ' );
-			}
-			$props['html-items'] .= $this->getSkin()->makeListItem( $key, $item, $options );
-
-			// Check the class of the item for a `selected` class and if so, propagate the items
-			// label to the main label.
-			if ( $setLabelToSelected ) {
-				if ( isset( $item['class'] ) && stripos( $item['class'], 'selected' ) !== false ) {
-					$props['label'] = $item['text'];
-				}
-			}
-		}
-
-		$props['html-after-portal'] = $isPortal ? $this->getAfterPortlet( $label ) : '';
-
-		// Mark the portal as empty if it has no content
-		$class = ( count( $urls ) == 0 && !$props['html-after-portal'] )
-			? 'vector-menu-empty emptyPortlet' : '';
-		$props['class'] = trim( "$class $extraClasses[$type]" );
 		return $props;
 	}
 
