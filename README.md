@@ -3,7 +3,7 @@ ParaDark Skin
 
 Installation
 ------------
-download this shit into a folder, make sure it's named "ParaDark"
+download this shit into a folder, make sure it's named "ParaDark" and slap it in the skins folder
 
 go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'ParaDark' );` next to all the other ones that look like that
 
