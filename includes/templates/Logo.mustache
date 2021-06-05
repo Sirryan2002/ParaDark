@@ -1,8 +1,23 @@
 {{#data-logos}}
 <a href="{{main-page-href}}" class="mw-logo">
-{{#icon}}
-<img class="mw-logo-icon" src="{{.}}" alt=""
+	{{#icon}}
+	{{! alt is provided for valid HTML but given aria-hidden not needed. }}
+	<img class="mw-logo-icon" src="{{.}}" alt=""
 		aria-hidden="true" height="50" width="50">
-        {{/icon}}
+	{{/icon}}
+	<span class="mw-logo-container">
+		{{#wordmark}}
+		<img class="mw-logo-wordmark" alt="{{msg-sitetitle}}"
+			src="{{src}}" width="{{width}}" height="{{height}}">
+		{{/wordmark}}
+		{{^wordmark}}
+		<strong class="mw-logo-wordmark">{{msg-sitetitle}}</strong>
+		{{/wordmark}}
+		{{#tagline}}
+		<img class="mw-logo-tagline"
+			alt="{{msg-sitesubtitle}}"
+			src="{{src}}" width="{{width}}" height="{{height}}">
+		{{/tagline}}
+	</span>
 </a>
 {{/data-logos}}

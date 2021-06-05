@@ -22,8 +22,8 @@ use Wikimedia\WrappedString;
      * don't know what I'm doing to even a minimal extent
      */
 
-    public function getModules() {
-      $modules = parent::getModules();
+    public function getDefaultModules() {
+      $modules = parent::getDefaultModules();
       $modules['styles'] = array_merge(
         $modules['styles'],
          [ 'skins.paradark.styles' ]

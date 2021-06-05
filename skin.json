@@ -26,7 +26,19 @@
 	"ResourceModules": {
 		"skins.paradark.styles": {
 			"class": "ResourceLoaderSkinModule",
-			"features": [ "normalize" ],
+			"features": {
+				"normalize": true,
+				"elements": true,
+				"content-tables": true,
+				"content-links": true,
+				"content-thumbnails": true,
+				"interface-category": true,
+				"toc": true
+			  },
+			"targets": [
+				"desktop",
+				"mobile"
+			  ],
 			"styles": [ "includes/skins.paradark.styles/skin.less" ]
 		}
 	},

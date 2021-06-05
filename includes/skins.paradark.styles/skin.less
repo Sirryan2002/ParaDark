@@ -1,15 +1,35 @@
 
+.mw-page-container {
+    padding: .5em;
+    display:grid;
+    grid-template-rows: 10em auto 5em;
+    grid-template-columns: 10em auto;
+}
+
+.logo {
+    grid-column-start: 1;
+    grid-column-end: span 1;
+    grid-row-start: 1;
+    grid-row-end: span 1;
+}
 
 .firstHeading {
     color:blue;
 }
 
 .mw-side-content {
-    width:20%;
     background-color:red;
+    grid-column-start: 1;
+    grid-column-end: span 1;
+    grid-row-start: 2;
+    grid-row-end: span 1;
 }
 
 .body-content {
-    width:80%;
     background-color:blue;
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    grid-row-start: 2;
+    grid-row-end: span 1;
+    min-height: 80vh;
 }
