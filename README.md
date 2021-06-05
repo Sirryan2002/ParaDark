@@ -1,4 +1,4 @@
-Vector Skin
+ParaDark Skin
 ========================
 
 Installation
