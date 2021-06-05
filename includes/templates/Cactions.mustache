@@ -1,0 +1,13 @@
+<nav id="{{id}}" {{#class}}class="{{.}}"{{/class}} aria-labelledby="{{label-id}}" role="navigation" {{{html-tooltip}}}
+	 {{{html-userlangattributes}}}>
+	{{! `body` class for backwards compatibility but let editors know not to use
+	 it via HTML comment below: }}
+	<!-- Please do not use the .body class, it is deprecated. -->
+	<div class="body paradark-menu-content">
+		<!-- Please do not use the .menu class, it is deprecated. -->
+		<ul class="{{list-classes}}">{{{html-items}}}</ul>
+		{{{html-after-portal}}}
+	</div>
+</nav>
+{{! Note: html-hook-vector-after-toolbox is deprecated. }}
+{{{html-hook-vector-after-toolbox}}}

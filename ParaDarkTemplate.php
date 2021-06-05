@@ -191,6 +191,7 @@ class ParaDarkTemplate extends BaseTemplate {
 		$firstPortal = $props[0] ?? null;
 
 		return [
+			'has-logo' => true,
 			'html-logo-attributes' => Xml::expandAttributes(
 				Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) + [
 					'class' => 'mw-wiki-logo',
@@ -233,6 +234,18 @@ class ParaDarkTemplate extends BaseTemplate {
 			'html-items' => '',
 			'html-tooltip' => Linker::tooltip( 'p-' . $label ),
 		];
+
+		foreach ( $urls as $key => $item ) {
+			$props['html-items'] .= $this->getSkin()->makeListItem( $key, $item, $options );
+
+			// Check the class of the item for a `selected` class and if so, propagate the items
+			// label to the main label.
+			if ( $setLabelToSelected ) {
+				if ( isset( $item['class'] ) && stripos( $item['class'], 'selected' ) !== false ) {
+					$props['label'] = $item['text'];
+				}
+			}
+		}
 		return $props;
 	}
 

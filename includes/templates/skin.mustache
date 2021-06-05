@@ -5,14 +5,34 @@
 	{{>Logo}}
 </div>
 <div class="mw-side-content">
-<ul>
-<li> hello
-<li> hello2
-<li> hello3
-</ul>
+    <ul>
+        <li> hello
+        <li> hello2
+        <li> hello3
+    </ul>
 </div>
 
+<div id="personal-nav">
+    {{#data-personal-menu}}{{>Cactions}}{{/data-personal-menu}}
+</div>
+
+<div id="mw-navigation">
+	<div class="mw-content-container mw-article-toolbar-container">
+		<div id="left-navigation">
+			{{#data-namespace-tabs}}{{>Cactions}}{{/data-namespace-tabs}}
+			{{#data-variants}}{{>Cactions}}{{/data-variants}}
+		</div>
+		<div id="right-navigation">
+			{{#data-page-actions}}{{>Cactions}}{{/data-page-actions}}
+			{{#data-page-actions-more}}{{>Cactions}}{{/data-page-actions-more}}
+			{{#data-search-box}}{{>SearchBox}}{{/data-search-box}}
+		</div>
+	</div>
+</div>
+
+
 <div class="body-content">
+    <h1 class="firstheading">{{{html-title}}}</h1>
     {{{html-body-content}}}
 </div>
 
