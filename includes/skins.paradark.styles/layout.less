@@ -1,0 +1,50 @@
+
+
+.mw-page-container {
+    padding: .5em;
+    display: grid;
+    grid-template-rows: 2em 2em 6em auto 5em;
+    grid-template-columns: 10em auto;
+    margin:.1em;
+}
+
+.logo {
+    grid-column-start: 1;
+    grid-column-end: span 1;
+    grid-row-start: 1;
+    grid-row-end: span 3;
+    margin: .5em;
+    padding: .5em;
+}
+
+.mw-side-content {
+    background-color:red;
+    grid-column-start: 1;
+    grid-column-end: span 1;
+    grid-row-start: 4;
+    grid-row-end: span 1;
+    margin: .5em;
+}
+
+.body-content {
+    background-color:blue;
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    grid-row-start: 3;
+    grid-row-end: span 2;
+    min-height: 80vh;
+    margin: .5em;
+    padding: .5em;
+}
+
+.mw-footer {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 5;
+    grid-row-end: span 1;
+}
+
+.printfooter {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
