@@ -15,6 +15,20 @@
 class ParaDarkTemplate extends BaseTemplate {
 
 
+	private const MENU_LABEL_KEYS = [
+		'cactions' => 'paradark-more-actions',
+		'tb' => 'toolbox',
+		'personal' => 'personaltools',
+		'lang' => 'otherlanguages',
+	];
+	/** @var int */
+	private const MENU_TYPE_DEFAULT = 0;
+	/** @var int */
+	private const MENU_TYPE_TABS = 1;
+	/** @var int */
+	private const MENU_TYPE_DROPDOWN = 2;
+	private const MENU_TYPE_PORTAL = 3;
+
 	private $templateParser;
 	private $templateRoot;
 	/**
@@ -166,24 +180,44 @@ class ParaDarkTemplate extends BaseTemplate {
 					break;
 				case 'TOOLBOX':
 					$portal = $this->getMenuData(
-						'tb', $content
+						'tb', $content, self::MENU_TYPE_PORTAL
 					);
-
 					$props[] = $portal;
 					break;
 				case 'LANGUAGES':
 					$portal = $this->getMenuData(
 						'lang',
 						$content,
+						self::MENU_TYPE_PORTAL
 					);
 					// The language portal will be added provided either
 					// languages exist or there is a value in html-after-portal
 					// for example to show the add language wikidata link (T252800)
-					if ( count( $content )) {
+					if ( count( $content ) ) {
 						$languages = $portal;
 					}
 					break;
 				default:
+					// Historically some portals have been defined using HTML rather than arrays.
+					// Let's move away from that to a uniform definition.
+					if ( !is_array( $content ) ) {
+						$html = $content;
+						$content = [];
+						wfDeprecated(
+							"`content` field in portal $name must be array."
+								. "Previously it could be a string but this is no longer supported.",
+							'1.35.0'
+						);
+					} else {
+						$html = false;
+					}
+					$portal = $this->getMenuData(
+						$name, $content, self::MENU_TYPE_PORTAL
+					);
+					if ( $html ) {
+						$portal['html-items'] .= $html;
+					}
+					$props[] = $portal;
 					break;
 			}
 		}
@@ -217,12 +251,24 @@ class ParaDarkTemplate extends BaseTemplate {
 	private function getMenuData(
 		string $label,
 		array $urls = [],
+		int $type = self::MENU_TYPE_DEFAULT,
 		array $options = [],
 		bool $setLabelToSelected = false
 	) : array {
 		$skin = $this->getSkin();
-
-
+		$extraClasses = [
+			self::MENU_TYPE_DROPDOWN => 'paradark-menu',
+			self::MENU_TYPE_TABS => 'paradark-menu paradark-menu-tabs paradarkTabs',
+			self::MENU_TYPE_PORTAL => 'paradark-menu paradark-menu-portal portal',
+			self::MENU_TYPE_DEFAULT => 'paradark-menu',
+		];
+		// A list of classes to apply the list element and override the default behavior.
+		$listClasses = [
+			// `.menu` is on the portal for historic reasons.
+			// It should not be applied elsewhere per T253329.
+			self::MENU_TYPE_DROPDOWN => 'menu paradark-menu-content-list',
+		];
+		$isPortal = self::MENU_TYPE_PORTAL === $type;
 		// For some menu items, there is no language key corresponding with its menu key.
 		// These inconsitencies are captured in MENU_LABEL_KEYS
 		$msgObj = $skin->msg($label);
@@ -258,7 +304,7 @@ class ParaDarkTemplate extends BaseTemplate {
 		$personalTools = $this->getPersonalTools();
 		$skin = $this->getSkin();
 
-		// For logged out users Vector shows a "Not logged in message"
+		// For logged out users ParaDark shows a "Not logged in message"
 		// This should be upstreamed to core, with instructions for how to hide it for skins
 		// that do not want it.
 		// For now we create a dedicated list item to avoid having to sync the API internals

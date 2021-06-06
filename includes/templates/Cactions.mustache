@@ -1,5 +1,8 @@
 <nav id="{{id}}" {{#class}}class="{{.}}"{{/class}} aria-labelledby="{{label-id}}" role="navigation" {{{html-tooltip}}}
 	 {{{html-userlangattributes}}}>
+	<h3 id="{{label-id}}">
+		<span>{{label}}</span>
+	</h3>
 	{{! `body` class for backwards compatibility but let editors know not to use
 	 it via HTML comment below: }}
 	<!-- Please do not use the .body class, it is deprecated. -->
