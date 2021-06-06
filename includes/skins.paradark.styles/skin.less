@@ -2,7 +2,7 @@
 .mw-page-container {
     padding: .5em;
     display: grid;
-    grid-template-rows: 2em 2em 6em auto 5em;
+    grid-template-rows: 2em 2em 6em auto 5em auto;
     grid-template-columns: 10em auto;
     margin:.1em;
 }
@@ -43,6 +43,13 @@
 .printfooter {
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.mw-footer {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    grid-row-start: 5;
+    grid-row-end: span 1;
 }
 
 #mw-navigation {
