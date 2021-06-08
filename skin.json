@@ -29,12 +29,11 @@
 			"features": {
 				"normalize": true,
 				"elements": true,
-				"content-tables": true,
-				"content-links": true,
-				"content-thumbnails": true,
-				"interface-category": true,
-				"toc": true
-			  },
+				"content": true,
+				"logo": true,
+				"interface": true,
+				"legacy": true
+			},
 			"targets": [
 				"desktop",
 				"mobile"
