@@ -1,6 +1,9 @@
-
+body {
+    background-color:@dark-color-dp0;
+}
 
 .mw-page-container {
+    background-color:@dark-color-dp0;
     padding: .5em;
     display: grid;
     grid-template-rows: 2em 2em 6em auto 5em;
@@ -18,16 +21,22 @@
 }
 
 .mw-side-content {
-    background-color:red;
+    background-color:@dark-color-dp4;
     grid-column-start: 1;
     grid-column-end: span 1;
     grid-row-start: 4;
     grid-row-end: span 1;
     margin: .5em;
+    padding: .2em;
+    color:@color-text-main;
+
+    h3 {
+        color:@color-text-main;
+    }
 }
 
 .body-content {
-    background-color:blue;
+    background-color: @dark-color-dp3;
     grid-column-start: 2;
     grid-column-end: span 1;
     grid-row-start: 3;
@@ -35,6 +44,7 @@
     min-height: 80vh;
     margin: .5em;
     padding: .5em;
+    color: @color-text-main;
 }
 
 .mw-footer {
