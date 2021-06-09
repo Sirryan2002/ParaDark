@@ -1,0 +1,60 @@
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
+
+/* Search */
+#p-search {
+	float: left;
+	margin-right: 0.5em;
+	margin-left: 0.5em;
+
+	form {
+		margin: 0.5em 0 0;
+	}
+}
+
+// Defined as `div`.
+// Provide extra element for gadgets due to `form` already carrying an `id`.
+#simpleSearch {
+	position: relative;
+	min-width: 5em;
+	// Support: IE 8, Firefox 18-, Chrome 19-, Safari 5.1-, Opera 19-, Android 4.4.4-.
+	width: 13.2em;
+	// Support: Modern browsers, responsive width.
+	width: 20vw;
+	max-width: 20em;
+	height: 100%;
+
+	// Styles for both the search input and the button.
+	input {
+		margin: 0;
+	}
+}
+
+// The search input.
+#searchInput {
+
+	width: 100%;
+	border: @border-base;
+	border-radius: @border-radius-standard;
+	padding: 0.4em 0.4em 0.4em;
+	direction: ltr;
+}
+
+// The buttons. They are displayed in the same position, and if both are
+// present the fulltext search one obscures the 'Go' one.
+#searchButton,
+#mw-searchButton {
+	background-color: transparent;
+	min-width: 24px;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	// Equal `font-size` to search input for `padding` calculationo.
+	/* Opera 12 on RTL flips the text in a funny way without this. */
+	/* @noflip */
+	direction: ltr;
+	/* Hide button text and replace it with the image. */
+	text-indent: -99999px;
+	white-space: nowrap;
+	overflow: hidden;
+}
