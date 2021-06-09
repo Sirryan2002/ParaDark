@@ -32,13 +32,24 @@
 //
 // == Page content ==
 //
-@color-headings: #FFFFFF;
+@color-muted: @color-headings;
+@color-disabled: #999999;
+@color-headings: #DDDDDD;
 @color-text-main: #FFFFFF;
 @color-link: #36b;
 @color-link--visited: #255cbd;
 @color-link--hover: #4d76bb;
 @color-link-new: #a55858;
 @color-link-selected: @color-base;
+
+//
+// == Element Styling ==
+//
+@border-radius-standard: .75em;
+@border-radius-actions: @border-radius-standard @border-radius-standard 0em 0em;
+@box-shadow-standard: 0 0 1em #000000;
+
+
 
 // See oojs/ui/src/themes/wikimediaui/common.less.
 @background-color-frameless--hover: rgba( 0, 24, 73, 7/255 ); // equivalent to @wmui-color-base90 on white
