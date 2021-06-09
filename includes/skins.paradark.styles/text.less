@@ -2,16 +2,20 @@
 
 a {
     color:@color-link;
+    text-decoration: none;
 
-    &:link {
+    &:hover, &:active {
+        color:@color-link--hover;
+        text-decoration: underline;
+    }
+
+    &:visited {
         color:@color-link--visited;
     }
-
-    &:hover {
-        color:@color-link--hover;
-    }
 }
 
-h3 {
+* h1, * h2, * h3, * h4, * h5, * h6 {
     color:@color-headings;
 }
+  
+  
