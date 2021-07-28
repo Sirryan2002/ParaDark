@@ -54,3 +54,43 @@
 // See oojs/ui/src/themes/wikimediaui/common.less.
 @background-color-frameless--hover: rgba( 0, 24, 73, 7/255 ); // equivalent to @wmui-color-base90 on white
 @color-primary: #36c; // wikimedia-ui-base.less
+
+@font-family-serif:
+	'Linux Libertine', // GNU+Linux, alternative to Times New Roman.
+	'Georgia',         // Windows, intended as a serif typeface that would appear elegant but
+	                   // legible printed small or on low-resolution screens.
+	'Times',           // Windows, very similar to Times New Roman with subtle differences.
+	serif;             // Platform default: 'Times New Roman' on Windows.
+
+//
+// Body content uses the user setting in browser / the system default sans-serif font:
+// Arial on Windows, Roboto on Android.
+
+@font-family-sans: sans-serif;
+
+// Fallback for headings, language: ja,he,ko. See T73240,T65817,T65843,T65844,T65827.
+@font-family-sans--fallback: sans-serif;
+
+@font-size-base: unit( 14 / @font-size-browser, em ); // Equals `0.875em`.
+@font-size-reset: @font-size-root;
+@font-size-heading-1: 1.8em;
+@font-size-heading-2: 1.5em;
+@font-size-heading-3: 1.2em;
+@font-size-notification: 0.8em;
+@font-size-site-notice: 0.8em;
+@font-size-footer: unit( 12 / @font-size-browser, em );
+@line-height-base: 1.6;
+@line-height-heading: 1.3;
+@line-height-code: 1.3;
+@line-height-footer-info: 1.4;
+@line-height-footer-buttons: 2;
+
+@line-height-nav: 1.125em;
+@font-size-nav-main: inherit;
+
+@font-size-nav-main-heading: unit( 12 / @font-size-browser, em ); // Equals `0.75em`.
+
+@font-size-nav-main-body: unit( 12 / @font-size-browser, em );
+@margin-start-nav-main-body: 0.5em;
+
+//Z-Indices
