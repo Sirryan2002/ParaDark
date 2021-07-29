@@ -1,16 +1,29 @@
 
 
+a {
+    color:@color-link;
+    text-decoration: none;
+
+    &:hover, &:active {
+        color:@color-link--hover;
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color:@color-link--visited;
+    }
+}
+
+* h1, * h2, * h3, * h4, * h5, * h6 {
+    color:@color-headings;
+}
+  
+  
 @media print {
-	@wmui-color-base0: #000;
 
-	@color-base: @wmui-color-base0;
 
-	@border-color-base: @wmui-color-base0;
-	@border-color-footer: #eee;
+	//These styles retain the existing typography in skin.less
 
-	/* These styles retain the existing typography in skin.less
-	In future (when deploying these styles) we may want to refactor skins.vector.styles
-	to apply certain styles in print as well as screen mode. */
 	.toc,
 	body {
 		padding: 10px;
@@ -51,24 +64,6 @@
 		border-bottom: 1px solid #aaa;
 	}
 
-	a {
-		color:@color-link;
-		text-decoration: none;
-	
-		&:hover, &:active {
-			color:@color-link--hover;
-			text-decoration: underline;
-		}
-	
-		&:visited {
-			color:@color-link--visited;
-		}
-	}
-	
-	* h1, * h2, * h3, * h4, * h5, * h6 {
-		color:@color-headings;
-	}
-
 	.firstHeading {
 		font-size: 25pt;
 		line-height: 28pt;
@@ -81,7 +76,7 @@
 	h2 {
 		// To avoid the bottom border of section headings with floated elements
 		overflow: hidden;
-		border-bottom: 2px solid @border-color-base;
+		border-bottom: 2px solid;
 	}
 
 	h3,
@@ -162,6 +157,7 @@
 	}
 
 	.toc {
+        background-color: @dark-color-dp5;
 		page-break-before: avoid;
 		page-break-after: avoid;
 		background: none;
@@ -200,44 +196,5 @@
 	.mw-jump-link,
 	.toc .tocnumber {
 		display: none;
-	}
-
-	.printfooter {
-		margin-top: 10px;
-		border-top: 3px solid @border-color-base;
-		padding-top: 10px;
-		font-size: 10pt;
-		clear: both;
-	}
-
-	.mw-footer {
-		margin-top: 12px;
-		border-top: 1px solid @border-color-footer;
-		padding-top: 5px;
-	}
-
-	#footer-info {
-		margin: 0;
-		padding: 0;
-
-		li {
-			color: #999;
-			list-style: none;
-			display: block;
-			padding-bottom: 10px;
-			font-size: 10pt;
-
-			a {
-				// override default black print style.
-				color: #999 !important; /* stylelint-disable-line declaration-no-important */
-			}
-		}
-	}
-
-	// Last updated as primary info.
-	#footer-info-lastmod {
-		color: @color-base;
-		font-size: 12pt;
-		font-weight: bold;
 	}
 }

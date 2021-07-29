@@ -3,6 +3,16 @@
 @font-size-root: 100%;
 @font-size-browser: 16; // Assumed browser default of `16px`
 
+@font-family-serif:
+	'Linux Libertine', // GNU+Linux, alternative to Times New Roman.
+	'Georgia',         // Windows, intended as a serif typeface that would appear elegant but
+	                   // legible printed small or on low-resolution screens.
+	'Times',           // Windows, very similar to Times New Roman with subtle differences.
+	serif;             // Platform default: 'Times New Roman' on Windows.
+
+@font-family-sans: sans-serif;
+@font-family-sans--fallback: sans-serif;
+
 //
 // == Dark Theme Depth Colors ==
 // Based on the Google Dark Theme Guide
@@ -25,7 +35,7 @@
 @color-muted: @color-headings;
 @color-disabled: #999999;
 @color-headings: #DDDDDD;
-@color-text-main: #DDDDDD;
+@color-text-main: #FFFFFF;
 @color-link: #36b;
 @color-link--visited: #255cbd;
 @color-link--hover: #4d76bb;
