@@ -89,8 +89,13 @@ a:not( .image ) {
     }
 
     &:visited {
-        color:@color-link--visited;
+        color:@color-link;
     }
+}
+
+// Normalize Red Links in the article
+a.new:not( .image ) {
+    color:@color-link-new;
 }
 
 .firstHeading {
