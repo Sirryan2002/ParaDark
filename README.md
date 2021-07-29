@@ -9,18 +9,20 @@ go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'ParaDark' );` n
 
 users should now be able to go to preferences>appearance and change their wiki skin.
 
+congratulations dumbass, you have a cool-ass dark-themed mediawiki skin.
+
 ### Configuration options
 
 See [skin.json](skin.json).
 
 Best way to alter this skin on a basic level is to edit the mustache templates and LESS stylesheets.
 
-Don't try and mess with the PHP template/skin files unless you know what you're doing because chances are you're just going to break shit.
+Don't try and mess with the PHP template/skin files unless you know what you're doing because I sure as hell didn't and it is currently held together with hope and duct tape. chances are you're just going to break shit.
 
 Development
 -----------
 
-I swore at my laptop atleast 100+ times already so this skin may be cursed
+I swore at my laptop atleast 100+ times already so this skin may be cursed, don't open most files especially if you're in the same room as a nun or priest.
 
 
 ### Coding conventions
