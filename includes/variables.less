@@ -20,6 +20,7 @@
 //
 // == Dark Theme Depth Colors ==
 // Based on the Google Dark Theme Guide
+// these aren't arbitrarily picked, they follow a pattern
 //
 @dark-color-dp0: #121212;
 @dark-color-dp1: #1E1E1E;
@@ -30,6 +31,8 @@
 @dark-color-dp6: #2D2D2D;
 @dark-color-dp7: #2E2E2E;
 @dark-color-dp8: #303030;
+@dark-color-dp9: #313131;
+@dark-color-dp10: #323232;
 
 @shadow-color: #000000;
 
@@ -48,9 +51,10 @@
 @color-link-selected: @color-base;
 
 //
-// == Element Styling ==
+// == Element Outline Styling ==
 //
 @border-radius-standard: .4em;
+@border-radius-half: .2em;  //Neccesary for smaller elements so we don't over do it
 @border-radius-actions: @border-radius-standard @border-radius-standard 0em 0em;
 @box-shadow-standard: 0 0 1em #000000;
 
@@ -62,7 +66,7 @@
 
 
 
-//z-indices
+//z-indices - what elements go ontop of what
 @z-background: 1;
 @z-cactions: 2;
 @z-cactions-selected: 4;

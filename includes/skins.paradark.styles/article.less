@@ -20,6 +20,16 @@
     border-radius: @border-radius-standard;
     color: @color-text-main;
     box-shadow: @box-shadow-standard;
-    border:none; //overwrite MW base styling for catlink class
+    border: none; //overwrite MW base styling for catlink class
+}
+
+#toc {
+    border: none;
+    background-color:@dark-color-dp10;
+    border-radius: @border-radius-half;
+
+    ul li a .tocnumber {
+        color:@color-text-main; //it shows up just fine
+    }
 }
 
