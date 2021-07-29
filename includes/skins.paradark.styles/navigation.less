@@ -39,12 +39,21 @@
 #p-views,
 #p-search {
     margin-left: 1em;
-    & li {
+    & li:not(.selected) {
         padding:.5em;
         transform: translate(0em,.4em);
         border-radius: @border-radius-actions;
         background-color: @dark-color-dp2;
         z-index: @z-cactions;
+    }
+
+    .selected {
+        padding:.5em;
+        transform: translate(0em,.4em);
+        position:relative; //this is neccesary to make sure z-indexing works
+        border-radius: @border-radius-actions;
+        background-color: @dark-color-dp3;
+        z-index: @z-cactions-selected;
     }
     
 }
