@@ -50,9 +50,32 @@ form.mw-editform {
     div.editOptions {
         color:@color-text-main;
         box-shadow: @box-shadow-standard;
-        border-radius: @border-radius-half;
+        border:none; //overwrite standard MW styling
+        border-radius: 0em 0em @border-radius-half @border-radius-half;
         background:@dark-color-dp12;
     }
 }
 
+oo-ui-inputWidget-input {
+    background-color: @white-background-muted;
+}
 
+.mw-htmlform-ooui-wrapper {
+    color:@color-text-main;
+    box-shadow: @box-shadow-standard;
+    border:none; //overwrite standard MW styling
+    border-radius: 0em 0em @border-radius-half @border-radius-half;
+    background:@dark-color-dp12;
+}
+
+.mw-changeslist-legend {
+    color:#000;
+}
+
+.mw-plusminus-neg {
+    color:@text-changes-neg;
+}
+
+.mw-plusminus-pos {
+    color:@text-changes-pos;
+}
