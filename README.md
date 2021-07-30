@@ -3,28 +3,38 @@ ParaDark Skin
 
 Installation
 ------------
-download this shit into a folder, make sure it's named "ParaDark" and slap it in the skins folder
+Download all these files into a folder name "ParaDark"
 
-go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'ParaDark' );` next to all the other ones that look like that
+go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'ParaDark' );` next to all the other wfLoadSkin() calls
 
-users should now be able to go to preferences>appearance and change their wiki skin.
+Now when users go to their Special:Preferences page, they can change their appearance setting theme to ParaDark
 
-congratulations dumbass, you have a cool-ass dark-themed mediawiki skin.
+Unistall
+-----------
+REQUIRED: remove this line `wfLoadSkin( 'ParaDark' );` from LocalSetting.php
+
+MediaWiki will automatically switch users using ParaDark back to the default skin
+
+You can keep the ParaDark folder in Skins if you just want to disable its use for the time being without
+any issues.
 
 ### Configuration options
 
 See [skin.json](skin.json).
 
-Best way to alter this skin on a basic level is to edit the mustache templates and LESS stylesheets.
+Best way to alter this skin on a basic level is to edit the .mustache templates and .LESS stylesheets.
 
-Don't try and mess with the PHP template/skin files unless you know what you're doing because I sure as hell didn't and it is currently held together with hope and duct tape. chances are you're just going to break shit.
+variables.less will allow you to change most Coloring and Styling uniformly without a ton of work or worry of breaking things.
+
+The Mustache templates rely heavily on the data they get from the PHP Template/Skin files so be wary about
+messing with them
+
+Don't try and mess with the PHP template/skin files unless you have a good understanding of Mediawiki Software and PHP
+removing certain calls for data will have a large impact on everything else.
 
 Development
 -----------
-
-I swore at my laptop atleast 100+ times already so this skin may be cursed, don't open most files especially if you're in the same room as a nun or priest.
-
-
+Most of the Template/Skin PHP files is sourced from the Vector Skin(I did a bit of customization) so credit goes to everyone who worked on that. 
 ### Coding conventions
 
 We strive for compliance with MediaWiki conventions:
@@ -35,3 +45,7 @@ Additions and deviations from those conventions that are more tailored to this
 project are noted at:
 
 <https://www.mediawiki.org/wiki/Reading/Web/Coding_conventions>
+
+Licensing
+-----------
+this is protected under GDL 2.0+ so you're free to take and use this and modify it to whatever the hell you want. Just credit the author and follow the license.
