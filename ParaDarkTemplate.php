@@ -180,7 +180,7 @@ class ParaDarkTemplate extends BaseTemplate {
 					break;
 				case 'TOOLBOX':
 					$portal = $this->getMenuData(
-						'tb', $content, self::MENU_TYPE_PORTAL
+						'Editor Tools', $content, self::MENU_TYPE_PORTAL //definining sidebar heading for toolbox here
 					);
 					$props[] = $portal;
 					break;
