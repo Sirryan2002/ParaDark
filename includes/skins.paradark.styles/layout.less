@@ -5,9 +5,10 @@ body {
 .mw-page-container {
     background-color:@dark-color-dp0;
     padding: .5em;
+    padding-left: .1em;
     display: grid;
     grid-template-rows: 2em 2em 6em auto 5em;
-    grid-template-columns: 10em auto;
+    grid-template-columns: 9em auto;
     margin:.1em;
     z-index: @z-background;
 }
@@ -22,14 +23,11 @@ body {
 }
 
 .mw-side-content {
-    background-color:@dark-color-dp4;
     grid-column-start: 1;
     grid-column-end: span 1;
     grid-row-start: 4;
     grid-row-end: span 1;
     height: fit-content;
-    border-radius: @border-radius-standard;
-    box-shadow: @box-shadow-standard;
 }
 
 .body-content {
