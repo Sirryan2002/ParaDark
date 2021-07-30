@@ -1,9 +1,10 @@
 {
 	"name": "ParaDark",
 	"author": [
-		"Ryan Longo - Sirryan2002"
+		"Ryan Longo - Sirryan2002",
+		"Source Code Credit - Vector Skin Developers"
 	],
-	"url": "",
+	"url": "https://github.com/Sirryan2002/ParaDark",
 	"descriptionmsg": "paradark-skin-desc",
 	"namemsg": "skinname-paradark",
 	"license-name": "GPL-2.0-or-later",
