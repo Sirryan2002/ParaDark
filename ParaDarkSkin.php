@@ -3,10 +3,9 @@
 /**
  * SkinTemplate class for ParaDark
  * 
- * I think this section does some wizard shit, it doesn't build the HTML I don't think
- * and it doesn't nab any base template but what I think it does is
- * whip some fucking css stlyesheets along with whatever the hell else I'm doing
- * also if I wanted to add references to JS scripts in this skin I could do that here
+ * This file extends the MW SkinTemplate which gives us some base functions to allow us to interact with out
+ * Skin JSON file as well as connect up with our LESS Stylesheets and get Mustache Templates sent to the Template file
+ * This then applies all that styling data ontop of the HTML our template PHP file spat out
  */
 
 use MediaWiki\MediaWikiServices;

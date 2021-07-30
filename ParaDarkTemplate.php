@@ -2,38 +2,35 @@
 /**
  * BaseTemplate class for ParaDark skin
  * so this extends the BaseTemplate class which itself is an extension of the SkinTemplate class
- * this just gives us access to some functions and shit which make it easier for us to interact
- * and build the HTML of the page. Especially using syntax like html::get
+ * this gives us access to some functions from SkinTemplate which gives us all the data we need to
+ * begin constructing our HTML elements while also beginning to set the classes/IDs for them so we can style it.
  * 
- * it also gives us all the date used to construct our HTML
- * think of all the shit that goes in the sidebar and body content(a.k.a the wikicode for an article you see in the edit tab)
+ * think of all the shit that goes in the sidebar and body content
+ * (a.k.a the wikicode for an article you see in the edit tab)
  * 
- * this is where we output the html contents of the page we're building so theoretically this
- * class needs to echo some html shit at some point
+ * At the end of execution we echo only the html contents of the page we're building
  */
 
 class ParaDarkTemplate extends BaseTemplate {
 
-
-	private const MENU_LABEL_KEYS = [
+	private const MENU_LABEL_KEYS = [ //I don't know what the next 10 lines are used for but deleting them breaks stuff
 		'cactions' => 'paradark-more-actions',
 		'tb' => 'toolbox',
 		'personal' => 'personaltools',
 		'lang' => 'otherlanguages',
 	];
-	/** @var int */
+
 	private const MENU_TYPE_DEFAULT = 0;
-	/** @var int */
 	private const MENU_TYPE_TABS = 1;
-	/** @var int */
 	private const MENU_TYPE_DROPDOWN = 2;
 	private const MENU_TYPE_PORTAL = 3;
 
 	private $templateParser;
 	private $templateRoot;
 	/**
-	 * Outputs the entire contents of the page
-     * also if you're reading this.... fuck you!
+     * if you're reading this.... fuck you!
+	 *  
+	 * This constructor is what we call in ParaDarkSkin.php to build our template parser
 	 */
 	public function __construct(Config $config, TemplateParser $templateParser) {
 		parent::__construct( $config );
@@ -42,9 +39,8 @@ class ParaDarkTemplate extends BaseTemplate {
 	}
 
 	private function getConfig() {
-		return $this->config;
+		return $this->config;       //getting our skin config
 	}
-
 
     protected function getTemplateParser() { //grab that fucking template parser
 		if ( $this->templateParser === null ) {
@@ -57,14 +53,15 @@ class ParaDarkTemplate extends BaseTemplate {
 
     /**
      * essentially what we're doing here is calling almost every single functions our parent class feeds us
-     * it's combining all page data into one happy array that we'll use later.
+     * it's combining all page data into one happy array that we'll use later that we'll combine with our HTML
+	 * Additionally, this grabs the widgets for the searchbar/recent edits/moving pages etc special pages 
      */
     private function getSkinData() : array {
         $contentNavigation = $this->getSkin()->getMenuProps();
 		$skin = $this->getSkin();
 		$out = $skin->getOutput();
 		$title = $out->getTitle();
-        $mainPageHref = Skin::makeMainPageUrl();
+        $mainPageHref = Skin::makeMainPageUrl(); //mostly used for our giant ass logo
 
         $commonSkinData = $skin->getTemplateData() + [
 			'html-headelement' => $out->headElement( $skin ),
@@ -77,6 +74,7 @@ class ParaDarkTemplate extends BaseTemplate {
 			'msg-paradark-jumptonavigation' => $skin->msg( 'paradark-jumptonavigation' )->text(),
 			'msg-paradark-jumptosearch' => $skin->msg( 'paradark-jumptosearch' )->text(),
 
+			//pretty self explanatory what these grab
 			'html-printfooter' => $skin->printSource(),
 			'html-categories' => $skin->getCategories(),
 			'data-footer' => $this->getFooterData(),
@@ -89,7 +87,7 @@ class ParaDarkTemplate extends BaseTemplate {
 			'msg-sitesubtitle' => $skin->msg( 'sitesubtitle' )->text(),
 			'main-page-href' => $mainPageHref,
 
-			'data-sidebar' => $this->buildSidebar(),
+			'data-sidebar' => $this->buildSidebar(), //this also gets our navbar and page actions as well
 			'sidebar-visible' => $this->isSidebarVisible(),
 			'msg-paradark-action-toggle-sidebar' => $skin->msg( 'paradark-action-toggle-sidebar' )->text(),
 		] + $this->getMenuProps();
@@ -238,15 +236,9 @@ class ParaDarkTemplate extends BaseTemplate {
 		];
 	}
 
-	/**
-	 * @param string $label to be used to derive the id and human readable label of the menu
-	 *  If the key has an entry in the constant MENU_LABEL_KEYS then that message will be used for the
-	 *  human readable text instead.
-	 * @param array $urls to convert to list items stored as string in html-items key
-	 * @param array $options (optional) to be passed to makeListItem
-	 * @param bool $setLabelToSelected (optional) the menu label will take the value of the
-	 *  selected item if found.
-	 * @return array
+	/** 
+	 * This whole function is what Vector uses to build their drop down for page actions
+	 * I'm not 100% sure how to rip it out without breaking things further, it's on my TO-Do list however
 	 */
 	private function getMenuData(
 		string $label,
@@ -295,9 +287,6 @@ class ParaDarkTemplate extends BaseTemplate {
 		return $props;
 	}
 
-	/**
-	 * @return array
-	 */
 	private function getMenuProps() : array {
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		$contentNavigation = $this->getSkin()->getMenuProps();
@@ -353,9 +342,6 @@ class ParaDarkTemplate extends BaseTemplate {
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	private function buildSearchProps() : array {
 		$config = $this->getConfig();
 		$skin = $this->getSkin();
