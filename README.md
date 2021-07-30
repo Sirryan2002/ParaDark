@@ -9,14 +9,14 @@ go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'ParaDark' );` n
 
 Now when users go to their Special:Preferences page, they can change their appearance setting theme to ParaDark
 
-Unistall
+Uninstall
 -----------
 REQUIRED: remove this line `wfLoadSkin( 'ParaDark' );` from LocalSetting.php
 
 MediaWiki will automatically switch users using ParaDark back to the default skin
 
 You can keep the ParaDark folder in Skins if you just want to disable its use for the time being without
-any issues.
+any issues. Otherwise you can just delete it at this point.
 
 ### Configuration options
 
