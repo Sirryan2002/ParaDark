@@ -23,6 +23,12 @@
     border: none; //overwrite MW base styling for catlink class
 }
 
+.toccolors {
+    border: none;
+    background-color:@dark-color-dp10;
+    border-radius: @border-radius-half;
+}
+
 #toc {
     border: none;
     background-color:@dark-color-dp10;
@@ -38,8 +44,17 @@
    -Recent Changes
    -Edit Box
    -History/Change Comparison
+   -Warning Boxes
 
 */
+
+.mw-warning {
+    margin-top: 1em;
+    background-color: @dark-color-dp10;
+    border-radius: @border-radius-half;
+    box-shadow: @box-shadow-standard;
+}
+
 form.mw-editform {
 
     textarea,
