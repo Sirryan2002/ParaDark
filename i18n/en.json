@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ryan Longo - Sirryan2002",
+			"Ryan Longo(Sirryan2002)",
 			"Vector Skin Developers"
 		]
 	},
 	"skinname-paradark": "ParaDark",
-	"paradark-skin-desc": "A darkmode skin developed for Paradise Station SS13",
+	"paradark-skin-desc": "A darkmode skin developed for Paradise Station SS13. Source code based off Vector",
 	"paradark.css": "/* All CSS here will be loaded for users of the ParaDark skin */",
 	"paradark.js": "/* All JavaScript here will be loaded for users of the ParaDark skin */",
 	"paradark-action-toggle-sidebar": "Toggle sidebar",
