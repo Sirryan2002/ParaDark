@@ -30,13 +30,14 @@
 	}
 }
 
-// The search input.
+// The search input. Keep this light, it is important that it is /extremely/ visible.
 #searchInput {
 
 	outline: none; //Getting rid of weird black outline
 	width: 100%;
 	border: @border-base;
 	border-radius: @border-radius-standard;
+	box-shadow: @box-shadow-standard; //not really noticable, however it keeps it uniform with other elements
 	padding: 0.4em 0.4em 0.4em;
 	direction: ltr;
 }
