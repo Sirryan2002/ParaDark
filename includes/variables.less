@@ -50,6 +50,7 @@
 @color-link--visited: #174aa1;
 @color-link--hover: #4d76bb;
 @color-link-new: #cf2d2d;
+@color-link-stub: #ff5f5f; //very rarily used, however, the normal color is hard to see
 @color-link-selected: @color-base;
 
 //Special Pages
@@ -67,17 +68,17 @@
 
 
 // See oojs/ui/src/themes/wikimediaui/common.less.
-@background-color-frameless--hover: rgba( 0, 24, 73, 7/255 ); // equivalent to @wmui-color-base90 on white
+@background-color-frameless--hover: rgba( 0, 24, 73, 7/255 );
 @color-primary: #36c; // wikimedia-ui-base.less
 
 
 
 //z-indices - what elements go ontop of what
 @z-background: 1;
-@z-cactions: 2;
+@z-cactions: 2; //page action tabs
 @z-cactions-selected: 4;
 @z-article: 3;
-@z-catlinks: 4;
+@z-catlinks: 4; //category article footer
 @z-searchbar: 4;
 @z-sidebar: 5;
-@z-navbar: 6;
+@z-navbar: 6; //navigation links in top-rigth of webpage

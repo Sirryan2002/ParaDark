@@ -13,7 +13,7 @@
 
 class ParaDarkTemplate extends BaseTemplate {
 
-	private const MENU_LABEL_KEYS = [ //I don't know what the next 10 lines are used for but deleting them breaks stuff
+	private const MENU_LABEL_KEYS = [ //I don't know what the next 10 lines are used for but deleting them breaks stuff(tl;dr on my to-do list)
 		'cactions' => 'paradark-more-actions',
 		'tb' => 'toolbox',
 		'personal' => 'personaltools',
