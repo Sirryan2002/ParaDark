@@ -5,7 +5,11 @@ Installation
 ------------
 Download all these files into a folder name "ParaDark"
 
+Place the ParaDark folder into Mediawiki/Skins
+
 go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'ParaDark' );` next to all the other wfLoadSkin() calls
+
+You may need to reload Mediawiki for it to show up.
 
 Now when users go to their Special:Preferences page, they can change their appearance setting theme to ParaDark
 
