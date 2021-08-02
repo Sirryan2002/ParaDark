@@ -45,6 +45,12 @@
         border-radius: @border-radius-actions;
         background-color: @dark-color-dp2;
         z-index: @z-cactions;
+
+        &:hover {
+            position:relative; //this is neccesary to make sure z-indexing works
+            background-color: @dark-color-dp3;
+            z-index: @z-cactions-selected;
+        }
     }
 
     .selected {
