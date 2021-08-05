@@ -195,9 +195,10 @@ ul {
     }
 }
 
-code {
+.body-content code { //.body-content is only here so we can overide mediawiki's natrual styling
     background-color: @color-code-background;
     border-radius: @border-radius-standard;
+    font-weight: lighter; //the more readable the better
     color: @color-text-bold;
-    padding: 0em 4px; //need to overide mw-code class
+    padding: 0em 4px; //overide mw-code class
 }
