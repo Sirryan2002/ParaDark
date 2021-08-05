@@ -9,13 +9,17 @@
     nav {
         h3 {
             color:@color-headings;
-            text-align: center;
             font-size:110%;
-            width:50%; //All styling for the underline
-            overflow: visible;
-            border-bottom: 2px solid #72777d;
-            white-space: nowrap;
+
+            &::after { //fancy underline styling, for the uninformed> this is a sudo-element
+                content: ''; //this has to be here
+                display: block; //keeps our border under the heading
+                width:50%; 
+                border-bottom: @sidebar-heading-border; //we like em on the thick side(kinda)
+                margin-top: .1em;
+            }
         }
+
         div ul {
             list-style-type: none;
             list-style-image: none;

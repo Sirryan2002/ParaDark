@@ -1,3 +1,10 @@
+
+
+
+//
+// = Cactions =
+//
+
 #mw-navigation {
     grid-column-start: 2;
     grid-column-end: span 1;
@@ -23,7 +30,7 @@
     grid-row-end: span 1;
 }
 
-.mw-content-container {
+.mw-content-container { //this is NOT body-content
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -33,7 +40,7 @@
     display: none;
 }
 
-#p-namespaces,
+#p-namespaces, //all our diff tabs
 #p-variants,
 #p-cactions,
 #p-views,
@@ -41,7 +48,7 @@
     margin-left: 1em;
     & li:not(.selected) {
         padding:.5em;
-        transform: translate(0em,.4em);
+        transform: translate(0em,.3em);
         border-radius: @border-radius-actions;
         background-color: @dark-color-dp2;
         z-index: @z-cactions;
@@ -55,7 +62,7 @@
 
     .selected {
         padding:.5em;
-        transform: translate(0em,.4em);
+        transform: translate(0em,.3em);
         position:relative; //this is neccesary to make sure z-indexing works
         border-radius: @border-radius-actions;
         background-color: @dark-color-dp3;
@@ -64,6 +71,9 @@
     
 }
 
+//
+// = Nav bar =
+//
 #mw-navigation ul {
     list-style-type: none;
     list-style-image: none;

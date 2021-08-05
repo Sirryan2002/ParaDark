@@ -32,8 +32,7 @@
 
 // The search input. Keep this light, it is important that it is /extremely/ visible.
 #searchInput {
-
-	outline: none; //Getting rid of weird black outline
+	outline: none; //Getting rid of weird black outline(mw style override)
 	width: 100%;
 	border: @border-base;
 	border-radius: @border-radius-standard;
@@ -60,3 +59,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 }
+
+// .suggestions { //suggestions search box     <------ this shit dont work for some reason?
+//     margin: -1.4em 0 0 0; //suggestions box should connect to searchbox
+// }
