@@ -12,6 +12,7 @@
 	"requires": {
 		"MediaWiki": ">= 1.29.0"
 	},
+	"manifest_version": 2,
 	"ValidSkinNames": {
 		"paradark": "ParaDark"
 	},
