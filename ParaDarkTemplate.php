@@ -122,7 +122,7 @@ class ParaDarkTemplate extends BaseTemplate {
         }
     
          // If footer icons are enabled append to the end of the rows
-        $footerIcons = $this->getFooterIcons( 'icononly' );
+        $footerIcons = $this->get('footericons');
          if ( count( $footerIcons ) > 0 ) {
               $items = [];
                foreach ( $footerIcons as $blockName => $blockIcons ) {
