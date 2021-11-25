@@ -16,6 +16,7 @@ Now when users go to their Special:Preferences page, they can change their appea
 Uninstall
 -----------
 REQUIRED: remove this line `wfLoadSkin( 'ParaDark' );` from LocalSetting.php
+REQUIRED: If you set $wgDefaultSkin to 'ParaDark' you must switch it to another skin you have installed
 
 MediaWiki will automatically switch users using ParaDark back to the default skin
 
